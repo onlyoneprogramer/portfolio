@@ -74,7 +74,7 @@ ERP 시스템, 자동화 프로그램, 보안 활동 등 다양한 분야에서�
 - 📍 **위치**: 대구
 - ✉️ **이메일**: dlwlsgh45@naver.com
 - 🌐 **기술 블로그**: (https://blog.naver.com/dlwlsgh45)
-- 🖼️ **포트폴리오 사이트**: [https://onlyoneprogramer.github.io/portfolio/](https://onlyoneprogramer.github.io/portfolio/)
+- 🖼️ **포트폴리오 사이트**: (https://onlyoneprogramer.github.io/portfolio/)
 
 ---
 
