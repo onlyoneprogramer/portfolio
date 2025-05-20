@@ -7,10 +7,10 @@ ERP 시스템의 핵심 기능 중 하나인 급여 계산 및 직원 정보 관
 
 개발 환경 & 사용 기술
 
-개발환경 :  visual studio
-사용기술 :  C#
-데이터베이스 : mysql
-PDF 출력	iTextSharp (C#)
+-개발환경 :  visual studio
+-사용기술 :  C#
+-데이터베이스 : mysql
+-PDF 출력	iTextSharp (C#)
 
 🧩 핵심 기능
 👥 직원 관리
