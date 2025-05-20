@@ -1,4 +1,5 @@
 # portfolio
+# 🧑‍💻 Developer Portfolio
 Smart Payroll Manager (스마트 급여 관리 시스템)
 
 🎯 프로젝트 목적
