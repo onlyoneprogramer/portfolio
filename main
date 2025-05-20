@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>포트폴리오 - 개발자 [이진호]</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <!-- Header -->
+  <header class="bg-white shadow p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-xl font-bold">[이진호]</h1>
+      <nav>
+        <ul class="flex space-x-4">
+          <li><a href="#about" class="hover:underline">소개</a></li>
+          <li><a href="#projects" class="hover:underline">프로젝트</a></li>
+          <li><a href="#resume" class="hover:underline">이력</a></li>
+          <li><a href="#contact" class="hover:underline">연락처</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 소개 Section -->
+  <section id="about" class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-4">👋 소개</h2>
+      <p>10년 이상의 보안 실무 경험을 바탕으로, 보안에 강하고 실용적인 웹/시스템을 만드는 풀스택 개발자입니다. 보안과 백엔드 중심 시스템 개발에 강점을 가지고 있으며, 실전 경험으로 설계부터 구현까지 책임질 수 있습니다.</p>
+    </div>
+  </section>
+
+  <!-- 프로젝트 Section -->
+  <section id="projects" class="py-12 bg-gray-100">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-6">💻 주요 프로젝트</h2>
+      <!-- 프로젝트 카드 -->
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white p-4 rounded shadow">
+          <h3 class="text-xl font-semibold">Unity 타워디펜스 게임</h3>
+          <p class="text-sm text-gray-600">Unity / C# / Google Play 배포</p>
+          <p class="mt-2">Unity 기반으로 제작된 모바일 타워디펜스 게임. 구글 플레이스토어에 출시.</p>
+        </div>
+
+        <div class="bg-white p-4 rounded shadow">
+          <h3 class="text-xl font-semibold">C# ERP 시스템</h3>
+          <p class="text-sm text-gray-600">C# / WinForms / MySQL</p>
+          <p class="mt-2">직원 등록, 급여 계산, 데이터베이스와 연동된 ERP 시스템 개발.</p>
+        </div>
+
+        <div class="bg-white p-4 rounded shadow">
+          <h3 class="text-xl font-semibold">급여 관리 시스템</h3>
+          <p class="text-sm text-gray-600">C# / WPF / PDF Export</p>
+          <p class="mt-2">직원별 급여 명세서 출력 및 급여 계산 자동화 구현.</p>
+        </div>
+
+        <div class="bg-white p-4 rounded shadow">
+          <h3 class="text-xl font-semibold">Upbit 자동매매 봇</h3>
+          <p class="text-sm text-gray-600">Python / PyUpbit</p>
+          <p class="mt-2">업비트 API를 활용한 자동 매매 봇 개발.</p>
+        </div>
+
+        <div class="bg-white p-4 rounded shadow">
+          <h3 class="text-xl font-semibold">VR/AR 콘텐츠 개발</h3>
+          <p class="text-sm text-gray-600">Unity / VR SDK</p>
+          <p class="mt-2">Unity를 활용한 가상현실 및 증강현실 콘텐츠 프로토타이핑.</p>
+        </div>
+
+        <div class="bg-white p-4 rounded shadow">
+          <h3 class="text-xl font-semibold">웹 기반 ERP 시스템</h3>
+          <p class="text-sm text-gray-600">Java / JSP / MySQL</p>
+          <p class="mt-2">Spring 및 JSP 기반의 웹 ERP 시스템 개발.</p>
+        </div>
+
+        <div class="bg-white p-4 rounded shadow">
+          <h3 class="text-xl font-semibold">화이트 해커 보안 경력</h3>
+          <p class="text-sm text-gray-600">보안 분석 / 정부·경찰 협력</p>
+          <p class="mt-2">10년간 불법도박사이트 추적, 폐쇄, 보안 진단 및 대응 경험.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 이력서 Section -->
+  <section id="resume" class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-4">📄 이력 요약</h2>
+      <p>10년간 정보보안 전문가로 활동하며 실전 대응 능력을 키웠고, 이후 풀스택 개발자로 전향하여 ERP 시스템, 자동화 봇, 게임 등 다양한 프로젝트를 수행했습니다.</p>
+      <a href="#" class="text-blue-500 underline mt-2 inline-block">PDF 이력서 다운로드</a>
+    </div>
+  </section>
+
+  <!-- 연락처 Section -->
+  <section id="contact" class="py-12 bg-gray-100">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-4">📬 연락처</h2>
+      <p>이메일: dlwlsgh45@naver.com</p>
+      <p>GitHub: <a href="https://github.com/onlyoneprogramer" class="text-blue-600 underline">github.com/onlyoneprogramer</a></p>
+      <p>블로그: <a href="https://blog.naver.com/dlwlsgh45" class="text-blue-600 underline">naver bloge</a></p>
+    </div>
+  </section>
+
+  <footer class="text-center py-6 text-gray-500 text-sm">
+    &copy; 2025 [이진호]. All rights reserved.
+  </footer>
+</body>
+</html>
