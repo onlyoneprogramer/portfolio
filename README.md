@@ -4,7 +4,7 @@
 안녕하세요, 백엔드/응용 개발자이자 정보보안 전문가로 활동해 온 **[당신의 이름]**입니다.  
 ERP 시스템, 자동화 프로그램, 보안 활동 등 다양한 분야에서의 실무 경험을 통해 실질적인 문제 해결 능력을 키워왔습니다.
 
-👉 **포트폴리오 웹사이트 보러가기**: [https://yourusername.github.io/portfolio](https://yourusername.github.io/portfolio)
+👉 **포트폴리오 웹사이트 보러가기**: [https://onlyoneprogramer.github.io/portfolio/](https://onlyoneprogramer.github.io/portfolio/)
 
 ---
 
@@ -72,9 +72,9 @@ ERP 시스템, 자동화 프로그램, 보안 활동 등 다양한 분야에서�
 ## 📫 연락처 & 기타 정보
 
 - 📍 **위치**: 대구
-- ✉️ **이메일**: your.email@example.com
-- 🌐 **기술 블로그**: [작성 예정]
-- 🖼️ **포트폴리오 사이트**: [https://yourusername.github.io/portfolio](https://yourusername.github.io/portfolio)
+- ✉️ **이메일**: dlwlsgh45@naver.com
+- 🌐 **기술 블로그**: (https://blog.naver.com/dlwlsgh45)
+- 🖼️ **포트폴리오 사이트**: [https://onlyoneprogramer.github.io/portfolio/](https://onlyoneprogramer.github.io/portfolio/)
 
 ---
 
