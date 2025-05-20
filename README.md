@@ -1,108 +1,81 @@
 # portfolio
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>포트폴리오 - 개발자 [이진호]</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-50 text-gray-800">
-  <!-- Header -->
-  <header class="bg-white shadow p-4">
-    <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-xl font-bold">[이진호]</h1>
-      <nav>
-        <ul class="flex space-x-4">
-          <li><a href="#about" class="hover:underline">소개</a></li>
-          <li><a href="#projects" class="hover:underline">프로젝트</a></li>
-          <li><a href="#resume" class="hover:underline">이력</a></li>
-          <li><a href="#contact" class="hover:underline">연락처</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+# 🧑‍💻 Developer Portfolio
 
-  <!-- 소개 Section -->
-  <section id="about" class="py-12 bg-white">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-4">👋 소개</h2>
-      <p>10년 이상의 보안 실무 경험을 바탕으로, 보안에 강하고 실용적인 웹/시스템을 만드는 풀스택 개발자입니다. 보안과 백엔드 중심 시스템 개발에 강점을 가지고 있으며, 실전 경험으로 설계부터 구현까지 책임질 수 있습니다.</p>
-    </div>
-  </section>
+안녕하세요, 백엔드/응용 개발자이자 정보보안 전문가로 활동해 온 **[당신의 이름]**입니다.  
+ERP 시스템, 자동화 프로그램, 보안 활동 등 다양한 분야에서의 실무 경험을 통해 실질적인 문제 해결 능력을 키워왔습니다.
 
-  <!-- 프로젝트 Section -->
-  <section id="projects" class="py-12 bg-gray-100">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-6">💻 주요 프로젝트</h2>
-      <!-- 프로젝트 카드 -->
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-white p-4 rounded shadow">
-          <h3 class="text-xl font-semibold">Unity 타워디펜스 게임</h3>
-          <p class="text-sm text-gray-600">Unity / C# / Google Play 배포</p>
-          <p class="mt-2">Unity 기반으로 제작된 모바일 타워디펜스 게임. 구글 플레이스토어에 출시.</p>
-        </div>
+👉 **포트폴리오 웹사이트 보러가기**: [https://yourusername.github.io/portfolio](https://yourusername.github.io/portfolio)
 
-        <div class="bg-white p-4 rounded shadow">
-          <h3 class="text-xl font-semibold">C# ERP 시스템</h3>
-          <p class="text-sm text-gray-600">C# / WinForms / MySQL</p>
-          <p class="mt-2">직원 등록, 급여 계산, 데이터베이스와 연동된 ERP 시스템 개발.</p>
-        </div>
+---
 
-        <div class="bg-white p-4 rounded shadow">
-          <h3 class="text-xl font-semibold">급여 관리 시스템</h3>
-          <p class="text-sm text-gray-600">C# / WPF / PDF Export</p>
-          <p class="mt-2">직원별 급여 명세서 출력 및 급여 계산 자동화 구현.</p>
-        </div>
+## 📌 대표 프로젝트 요약
 
-        <div class="bg-white p-4 rounded shadow">
-          <h3 class="text-xl font-semibold">Upbit 자동매매 봇</h3>
-          <p class="text-sm text-gray-600">Python / PyUpbit</p>
-          <p class="mt-2">업비트 API를 활용한 자동 매매 봇 개발.</p>
-        </div>
+### 💼 C# ERP 시스템
+- **기술 스택**: C#, WinForms, MySQL
+- **주요 기능**: 직원 등록, 급여 계산, 출퇴근 관리 등 ERP 핵심 기능 구현
+- **특징**: MySQL 연동, DataGridView 실시간 반영, 논리삭제 처리 등 실무 적용 고려
 
-        <div class="bg-white p-4 rounded shadow">
-          <h3 class="text-xl font-semibold">VR/AR 콘텐츠 개발</h3>
-          <p class="text-sm text-gray-600">Unity / VR SDK</p>
-          <p class="mt-2">Unity를 활용한 가상현실 및 증강현실 콘텐츠 프로토타이핑.</p>
-        </div>
+---
 
-        <div class="bg-white p-4 rounded shadow">
-          <h3 class="text-xl font-semibold">웹 기반 ERP 시스템</h3>
-          <p class="text-sm text-gray-600">Java / JSP / MySQL</p>
-          <p class="mt-2">Spring 및 JSP 기반의 웹 ERP 시스템 개발.</p>
-        </div>
+### 🧾 급여 관리 시스템 (WPF)
+- **기술 스택**: C#, WPF, iText7 (PDF Export)
+- **주요 기능**: 직원별 급여명세서 PDF 자동 생성, 월급 계산
+- **특징**: MVVM 패턴 기반 구조, 사용자 친화적 UI 구성
 
-        <div class="bg-white p-4 rounded shadow">
-          <h3 class="text-xl font-semibold">화이트 해커 보안 경력</h3>
-          <p class="text-sm text-gray-600">보안 분석 / 정부·경찰 협력</p>
-          <p class="mt-2">10년간 불법도박사이트 추적, 폐쇄, 보안 진단 및 대응 경험.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+---
 
-  <!-- 이력서 Section -->
-  <section id="resume" class="py-12 bg-white">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-4">📄 이력 요약</h2>
-      <p>10년간 정보보안 전문가로 활동하며 실전 대응 능력을 키웠고, 이후 풀스택 개발자로 전향하여 ERP 시스템, 자동화 봇, 게임 등 다양한 프로젝트를 수행했습니다.</p>
-      <a href="#" class="text-blue-500 underline mt-2 inline-block">PDF 이력서 다운로드</a>
-    </div>
-  </section>
+### 🤖 Upbit 자동매매 봇
+- **기술 스택**: Python, PyUpbit, Pandas
+- **주요 기능**: 실시간 시세 조회, 조건부 자동 매수/매도 전략 실행
+- **특징**: GUI 탑재, 로그 추적, API 키 암호화 처리
 
-  <!-- 연락처 Section -->
-  <section id="contact" class="py-12 bg-gray-100">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-4">📬 연락처</h2>
-      <p>이메일: dlwlsgh45@naver.com</p>
-      <p>GitHub: <a href="https://github.com/onlyoneprogramer" class="text-blue-600 underline">github.com/onlyoneprogramer</a></p>
-      <p>블로그: <a href="https://blog.naver.com/dlwlsgh45" class="text-blue-600 underline">naver bloge</a></p>
-    </div>
-  </section>
+---
 
-  <footer class="text-center py-6 text-gray-500 text-sm">
-    &copy; 2025 [이진호]. All rights reserved.
-  </footer>
-</body>
-</html>
+### 🧠 화이트 해커 경력
+- **활동 기간**: 약 10년
+- **주요 역할**: 불법 도박사이트 추적, 보안 위협 대응, 폐쇄 조치 지원
+- **협력 기관**: 경찰청, 정부기관과 합동 작전 수행
+- **성과**: 다수의 고위험 사이트 식별 및 폐쇄에 기여
+
+---
+
+### 🌐 웹 기반 ERP 시스템
+- **기술 스택**: Java, JSP, Spring, MySQL
+- **주요 기능**: 로그인/회원가입, JWT 인증, 직원/자산/급여 관리
+- **특징**: REST API 설계, 역할 기반 접근 제어(RBAC), Vue/React 연동 가능
+
+---
+
+### 🧱 Unity 기반 타워 디펜스 게임
+- **기술 스택**: Unity, C#, Google Play Console
+- **설명**: 다양한 유닛과 타워를 조합하는 전략형 TD 게임 개발 및 출시
+- **결과**: 실제 구글 플레이 출시 완료 (실패도 경험으로!)
+
+---
+
+### 🧊 VR/AR 콘텐츠 개발
+- **기술 스택**: Unity, VR SDK, AR Foundation
+- **활용 사례**: 교육 콘텐츠 프로토타입 제작, 몰입형 가상 경험 설계
+
+---
+
+## 🛠 기술 스택 요약
+
+- **언어**: C#, Java, Python, HTML/CSS/JS, SQL
+- **프레임워크**: Spring, Spring Boot, WinForms, WPF, Unity
+- **데이터베이스**: MySQL, MariaDB
+- **보안 경험**: 웹 보안, 트래픽 분석, 서버 추적, 익명성 해제 도구 활용
+- **기타**: Git, GitHub, REST API, JWT, PDF Export, Tailwind CSS
+
+---
+
+## 📫 연락처 & 기타 정보
+
+- 📍 **위치**: 대구
+- ✉️ **이메일**: your.email@example.com
+- 🌐 **기술 블로그**: [작성 예정]
+- 🖼️ **포트폴리오 사이트**: [https://yourusername.github.io/portfolio](https://yourusername.github.io/portfolio)
+
+---
+
+> 본 README는 개발자의 실제 실무 경험을 바탕으로 구성된 이력 요약이며, 관련 증빙 및 소스코드 요청은 별도 협의 후 제공 가능합니다.
