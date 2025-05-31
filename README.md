@@ -59,6 +59,13 @@ ERP 시스템, 자동화 프로그램, 보안 활동 등 다양한 분야에서�
 
 ---
 
+### 📄 논문
+제목:
+차세대 백도어 탐지 및 방어를 위한 하이퍼바이저 기반 BPFdoor 대응 프레임워크 설계 및 구현
+
+핵심 키워드:
+BPFdoor, 하이퍼바이저, KVM, eBPF, VMI (Virtual Machine Introspection), LSM, 커널 무결성 검사, 이중 에이전트 모니터링, 자동 격리 및 복구
+
 ## 🛠 기술 스택 요약
 
 - **언어**: C#, Java, Python, HTML/CSS/JS, SQL
