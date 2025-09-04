@@ -1,0 +1,32 @@
+using UnityEngine;
+
+public class WaveSpawner : MonoBehaviour
+{
+    public GameObject enemyPrefab;
+    public Transform spawnPoint;
+    public int enemyCount = 5;
+    public float spawnInterval = 1f;
+
+    private int spawned = 0;
+    private float timer = 0f;
+
+    void Update()
+    {
+        if (spawned < enemyCount)
+        {
+            timer -= Time.deltaTime;
+            if (timer <= 0f)
+            {
+                SpawnEnemy();
+                timer = spawnInterval;
+            }
+        }
+    }
+
+    void SpawnEnemy()
+    {
+        Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+        spawned++;
+        Debug.Log($"적 스폰! {spawned}/{enemyCount}");
+    }
+}
