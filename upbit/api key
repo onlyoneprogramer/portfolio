@@ -1,0 +1,14 @@
+import requests
+
+API_KEY = "YOUR_ACCESS_KEY"
+SECRET_KEY = "YOUR_SECRET_KEY"
+
+url = "https://api.upbit.com/v1/accounts"
+headers = {
+    "Authorization": f"Bearer {API_KEY}"
+}
+
+# 실제 요청 대신 예제 출력
+print("💡 포트폴리오용 API 호출 예시")
+# response = requests.get(url, headers=headers)
+# print(response.json())
