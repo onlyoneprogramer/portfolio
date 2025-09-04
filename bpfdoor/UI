@@ -1,0 +1,294 @@
+import sys
+import os
+import re
+from collections import Counter, defaultdict
+from datetime import datetime
+
+from PyQt5.QtWidgets import (
+    QApplication, QWidget, QVBoxLayout, QHBoxLayout,
+    QPushButton, QTextEdit, QLabel, QFileDialog,
+    QMessageBox, QLineEdit, QTabWidget, QCheckBox
+)
+from PyQt5.QtCore import QTimer
+from PyQt5.QtGui import QTextCursor, QTextCharFormat, QColor
+
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.figure import Figure
+
+LOG_FILE = "sample_bpfdoor_log.txt"  # 실제 환경에 맞게 수정
+
+class BPFdoorMonitor(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("BPFdoor 탐지 로그 모니터")
+        self.setGeometry(100, 100, 900, 900)
+
+        self.full_log = ""  # 전체 로그 원본
+        self.prev_alert_count = 0  # 경고 중복 알림 방지용
+        self.alert_enabled = True  # 알림 활성화 여부
+
+        main_layout = QVBoxLayout()
+
+        # 탭 위젯 생성
+        self.tabs = QTabWidget()
+        main_layout.addWidget(self.tabs)
+
+        # 1) 탐지 로그 탭
+        self.tab_log = QWidget()
+        self.init_log_tab()
+        self.tabs.addTab(self.tab_log, "📄 탐지 로그")
+
+        # 2) 실시간 탐지 탭
+        self.tab_realtime = QWidget()
+        self.init_realtime_tab()
+        self.tabs.addTab(self.tab_realtime, "⏱ 실시간 탐지")
+
+        # 3) 설정 탭
+        self.tab_settings = QWidget()
+        self.init_settings_tab()
+        self.tabs.addTab(self.tab_settings, "⚙️ 설정")
+
+        self.setLayout(main_layout)
+
+        # 자동 새로고침 타이머 (탐지 로그 탭에만 적용)
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.load_logs)
+        self.timer.start(3000)
+
+        self.load_logs()
+
+     
+    def init_log_tab(self):
+        layout = QVBoxLayout()
+
+        # 검색창
+        search_layout = QHBoxLayout()
+        self.search_box = QLineEdit()
+        self.search_box.setPlaceholderText("🔍 키워드를 입력하여 필터링")
+        self.search_box.textChanged.connect(self.filter_logs)
+        search_layout.addWidget(QLabel("검색어:"))
+        search_layout.addWidget(self.search_box)
+        layout.addLayout(search_layout)
+
+        # 로그 출력창
+        self.text_area = QTextEdit()
+        self.text_area.setReadOnly(True)
+        layout.addWidget(self.text_area)
+
+        # 탐지 통계 텍스트 라벨
+        self.stats_label = QLabel("📊 탐지 통계: 없음")
+        layout.addWidget(self.stats_label)
+
+        # matplotlib 그래프 영역 (막대그래프)
+        self.figure_bar = Figure(figsize=(5, 2))
+        self.canvas_bar = FigureCanvas(self.figure_bar)
+        layout.addWidget(self.canvas_bar)
+
+        # matplotlib 그래프 영역 (타임라인 라인차트)
+        self.figure_line = Figure(figsize=(5, 2))
+        self.canvas_line = FigureCanvas(self.figure_line)
+        layout.addWidget(self.canvas_line)
+
+        # 하단 버튼
+        button_layout = QHBoxLayout()
+        self.refresh_btn = QPushButton("🔁 수동 새로고침")
+        self.refresh_btn.clicked.connect(self.load_logs)
+        button_layout.addWidget(self.refresh_btn)
+
+        self.save_btn = QPushButton("💾 로그 저장")
+        self.save_btn.clicked.connect(self.save_log)
+        button_layout.addWidget(self.save_btn)
+
+        layout.addLayout(button_layout)
+        self.tab_log.setLayout(layout)
+
+    def init_realtime_tab(self):
+        layout = QVBoxLayout()
+
+        self.realtime_label = QLabel("실시간 탐지 중...")
+        layout.addWidget(self.realtime_label)
+
+        self.realtime_refresh_btn = QPushButton("🔁 즉시 새로고침")
+        self.realtime_refresh_btn.clicked.connect(self.load_logs)
+        layout.addWidget(self.realtime_refresh_btn)
+
+        self.tab_realtime.setLayout(layout)
+
+    def init_settings_tab(self):
+        layout = QVBoxLayout()
+
+        self.alert_checkbox = QCheckBox("🚨 경고 알림 활성화")
+        self.alert_checkbox.setChecked(True)
+        self.alert_checkbox.stateChanged.connect(self.toggle_alert)
+        layout.addWidget(self.alert_checkbox)
+
+        layout.addStretch()
+        self.tab_settings.setLayout(layout)
+
+    def toggle_alert(self, state):
+        self.alert_enabled = (state == 2)  # 2 = Checked
+
+    def load_logs(self):
+        try:
+            with open(LOG_FILE, "r") as f:
+                self.full_log = f.read()
+            self.filter_logs()
+            self.update_stats()
+        except PermissionError:
+            self.text_area.setPlainText("[ERROR] 권한이 없습니다. sudo로 실행하거나 권한 확인하세요.")
+        except FileNotFoundError:
+            self.text_area.setPlainText(f"[ERROR] 로그 파일이 없습니다: {LOG_FILE}")
+
+    def filter_logs(self):
+        keyword = self.search_box.text().lower()
+        lines = self.full_log.splitlines()
+
+        if keyword:
+            filtered = [line for line in lines if keyword in line.lower()]
+        else:
+            filtered = lines
+
+        display_text = "\n".join(filtered)
+        self.text_area.setPlainText(display_text)
+        self.highlight_keywords()
+
+    def highlight_keywords(self):
+        cursor = self.text_area.textCursor()
+        cursor.movePosition(QTextCursor.Start)
+
+        highlight_words = {
+            "bpfdoor": QColor("red"),
+            "suspicious": QColor("orange"),
+            "alert": QColor("magenta"),
+            "rootkit": QColor("purple")
+        }
+
+        for keyword, color in highlight_words.items():
+            fmt = QTextCharFormat()
+            fmt.setForeground(color)
+
+            cursor.movePosition(QTextCursor.Start)
+            while cursor.find(keyword, QTextCursor.FindCaseSensitively):
+                cursor.mergeCharFormat(fmt)
+
+    def update_stats(self):
+        lines = self.full_log.lower().splitlines()
+        counters = Counter()
+
+        for line in lines:
+            if "suspicious" in line:
+                counters["Suspicious"] += 1
+            if "bpfdoor" in line:
+                counters["BPFdoor"] += 1
+            if "alert" in line:
+                counters["ALERT"] += 1
+            if "rootkit" in line:
+                counters["Rootkit"] += 1
+
+        # 경고 알림 트리거 (설정 체크박스에 따라 동작)
+        alert_sum = counters["BPFdoor"] + counters["Rootkit"] + counters["ALERT"]
+        if self.alert_enabled and alert_sum > self.prev_alert_count:
+            QMessageBox.warning(self, "위험 탐지", f"🚨 의심 로그가 탐지되었습니다!\n총 {alert_sum} 건\n(bpfdoor/rootkit/alert 포함)")
+            self.prev_alert_count = alert_sum
+
+        # 텍스트 출력
+        if counters:
+            stats_text = " / ".join(f"{k}: {v}" for k, v in counters.items())
+        else:
+            stats_text = "없음"
+
+        self.stats_label.setText(f"📊 탐지 통계: {stats_text}")
+        self.plot_bar_chart(counters)
+        self.plot_timeline_chart(self.full_log)
+
+        # 실시간탭에도 통계 표시 (간단)
+        self.realtime_label.setText(f"최근 탐지: {stats_text}")
+
+    def plot_bar_chart(self, counters):
+        self.figure_bar.clear()
+        ax = self.figure_bar.add_subplot(111)
+        labels = list(counters.keys())
+        values = [counters[k] for k in labels]
+
+        ax.bar(labels, values, color=["orange", "red", "magenta", "purple"])
+        ax.set_title("탐지 키워드 통계")
+        ax.set_ylabel("탐지 횟수")
+        self.figure_bar.tight_layout()
+        self.canvas_bar.draw()
+
+    def plot_timeline_chart(self, full_log_text):
+        # 타임스탬프와 이벤트 키워드별 발생 수 집계 (분 단위)
+        # 로그 라인 예시: "[2025-07-24 10:11:12] suspicious activity detected ..."
+        # 실제 로그 형식에 맞게 정규식 수정 필요
+
+        time_event_counts = defaultdict(lambda: defaultdict(int))
+        timestamp_regex = re.compile(r"\[(\d{4}-\d{2}-\d{2} \d{2}:\d{2}):\d{2}\]")  # 분 단위까지 캡처
+
+        keywords = ["bpfdoor", "suspicious", "alert", "rootkit"]
+
+        for line in full_log_text.splitlines():
+            ts_match = timestamp_regex.search(line)
+            if not ts_match:
+                continue
+            time_key = ts_match.group(1)  # 'YYYY-MM-DD HH:MM'
+            line_lower = line.lower()
+            for kw in keywords:
+                if kw in line_lower:
+                    time_event_counts[kw][time_key] += 1
+
+        # 시간 축 정렬
+        all_times = set()
+        for kw in keywords:
+            all_times.update(time_event_counts[kw].keys())
+        all_times = sorted(all_times)
+
+        if not all_times:
+            # 로그에 타임스탬프가 없으면 그래프 그리지 않음
+            self.figure_line.clear()
+            ax = self.figure_line.add_subplot(111)
+            ax.text(0.5, 0.5, "타임스탬프가 포함된 로그가 필요합니다.", ha='center', va='center')
+            ax.axis('off')
+            self.canvas_line.draw()
+            return
+
+        # 각 키워드별 시간대별 이벤트 수 배열 생성 (0 포함)
+        series_data = {}
+        for kw in keywords:
+            series_data[kw] = [time_event_counts[kw].get(t, 0) for t in all_times]
+
+        # 날짜/시간 문자열을 matplotlib x축용 숫자 또는 그대로 사용 (간단히 문자열 그대로)
+        x = all_times
+
+        self.figure_line.clear()
+        ax = self.figure_line.add_subplot(111)
+
+        colors = {
+            "bpfdoor": "red",
+            "suspicious": "orange",
+            "alert": "magenta",
+            "rootkit": "purple"
+        }
+
+        for kw in keywords:
+            ax.plot(x, series_data[kw], label=kw.capitalize(), color=colors.get(kw, "black"), marker='o')
+
+        ax.set_title("이벤트별 타임라인 (분 단위)")
+        ax.set_xlabel("시간 (YYYY-MM-DD HH:MM)")
+        ax.set_ylabel("이벤트 수")
+        ax.legend()
+        ax.tick_params(axis='x', rotation=45)
+        self.figure_line.tight_layout()
+        self.canvas_line.draw()
+
+    def save_log(self):
+        path, _ = QFileDialog.getSaveFileName(self, "로그 저장", "bpfdoor_log.txt", "Text Files (*.txt)")
+        if path:
+            with open(path, "w") as f:
+                f.write(self.text_area.toPlainText())
+            QMessageBox.information(self, "저장 완료", f"로그가 저장되었습니다:\n{path}")
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = BPFdoorMonitor()
+    window.show()
+    sys.exit(app.exec_())
