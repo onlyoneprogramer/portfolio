@@ -1,0 +1,30 @@
+using UnityEngine;
+
+public class Enemy : MonoBehaviour
+{
+    public float speed = 2f;
+    private Vector3 targetPos;
+
+    void Start()
+    {
+        // 단순 직선 이동 예시
+        targetPos = transform.position + new Vector3(10f, 0f, 0f);
+    }
+
+    void Update()
+    {
+        float step = speed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, targetPos, step);
+
+        if (Vector3.Distance(transform.position, targetPos) < 0.1f)
+        {
+            Destroy(gameObject); // 도착하면 삭제
+        }
+    }
+
+    public void TakeDamage(int dmg)
+    {
+        Debug.Log($"{name}가 {dmg} 피해를 입음!");
+        Destroy(gameObject); // 데모용은 바로 제거
+    }
+}
