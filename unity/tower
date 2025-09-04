@@ -1,0 +1,54 @@
+using UnityEngine;
+
+public class Tower : MonoBehaviour
+{
+    public float range = 5f;
+    public float fireRate = 1f;
+    private float fireCountdown = 0f;
+
+    void Update()
+    {
+        fireCountdown -= Time.deltaTime;
+
+        // 적 탐색
+        Enemy target = FindClosestEnemy();
+        if (target != null && fireCountdown <= 0f)
+        {
+            Shoot(target);
+            fireCountdown = 1f / fireRate;
+        }
+    }
+
+    Enemy FindClosestEnemy()
+    {
+        Enemy[] enemies = GameObject.FindObjectsOfType<Enemy>();
+        Enemy closest = null;
+        float minDist = Mathf.Infinity;
+
+        foreach (Enemy e in enemies)
+        {
+            float dist = Vector3.Distance(transform.position, e.transform.position);
+            if (dist < minDist)
+            {
+                minDist = dist;
+                closest = e;
+            }
+        }
+
+        if (minDist <= range)
+            return closest;
+        return null;
+    }
+
+    void Shoot(Enemy enemy)
+    {
+        Debug.Log($"타워 공격! {enemy.name} 피해 입힘");
+        enemy.TakeDamage(10);  // 실제 게임 데미지 아님, 포트폴리오용
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, range);
+    }
+}
