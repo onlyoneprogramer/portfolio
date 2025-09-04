@@ -1,0 +1,43 @@
+using System;
+using System.Windows.Forms;
+
+namespace SmartPayrollDemo
+{
+    public partial class MainForm : Form
+    {
+        public MainForm()
+        {
+            InitializeComponent();
+            LoadDashboard();
+        }
+
+        private void LoadDashboard()
+        {
+            mainPanel.Controls.Clear();
+            DashboardControl dash = new DashboardControl();
+            dash.Dock = DockStyle.Fill;
+            mainPanel.Controls.Add(dash);
+        }
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            LoadDashboard();
+        }
+
+        private void btnEmployee_Click(object sender, EventArgs e)
+        {
+            mainPanel.Controls.Clear();
+            EmployeeControl emp = new EmployeeControl();
+            emp.Dock = DockStyle.Fill;
+            mainPanel.Controls.Add(emp);
+        }
+
+        private void btnPayroll_Click(object sender, EventArgs e)
+        {
+            mainPanel.Controls.Clear();
+            PayrollControl pay = new PayrollControl();
+            pay.Dock = DockStyle.Fill;
+            mainPanel.Controls.Add(pay);
+        }
+    }
+}
