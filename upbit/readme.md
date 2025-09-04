@@ -30,6 +30,12 @@
 
 ---
 
+## 코드(damo)
+
+- demo형식의 코드라서 데모데이터 및 코드의 일부분만 올렸습니다.
+
+---
+
 ## 📈 주요 기능
 
 ### 💹 실시간 시세 수집 및 자동 매매
@@ -82,3 +88,4 @@ $ git clone https://github.com/username/upbit-autobot.git
 $ cd upbit-autobot
 $ pip install -r requirements.txt
 $ python main.py
+
