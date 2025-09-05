@@ -1,4 +1,4 @@
-# OnlyOneProgramer Portfolio
+# 이진호 Portfolio
 
 ## 🔹 프로필
 - **이름:** 이진호
@@ -64,3 +64,4 @@
 - **기술 스택:** Kali Linux, Wireshark, Nmap, Metasploit, Python, eBPF 기반 커널 보안 모니터링
 
 ---
+
