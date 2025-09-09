@@ -54,7 +54,7 @@
 - **VR/AR 콘텐츠 개발**: 기본 구현 경험  
 - **PyQt5 보안 로그 뷰어**: UI 및 시각화 일부 구현  
 - **WPF 장비 모니터링 앱**: 간단한 UI 및 데이터 연동
-- **bpfdoor+랜섬웨어+apt공격+공급망공격** : 방어 솔루션 개발중
+- **actinova** : 방어 솔루션 개발중
 
 ---
 
@@ -65,5 +65,6 @@
 - **기술 스택:** Kali Linux, Wireshark, Nmap, Metasploit, Python, eBPF 기반 커널 보안 모니터링
 
 ---
+
 
 
