@@ -49,7 +49,7 @@
 
 ---
 
-## 기타 프로젝트 (간략)
+### 기타 프로젝트 (간략)
 
 - **Unity 기반 타워 디펜스 게임
 
@@ -89,6 +89,7 @@ VMI 기반 모니터링, Dual Agent 구조 및 자동화 대응 모듈 연구
 - **기술 스택:** Kali Linux, Wireshark, Nmap, Metasploit, Python, eBPF 기반 커널 보안 모니터링
 
 ---
+
 
 
 
